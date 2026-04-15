@@ -140,8 +140,6 @@ Current behavior:
 - `postProcess` → uses `case`
 - `reconstructPar` → uses `processor`
 - `reconstructParMesh` → uses `processor`
-
-This is the recommended default mode.
 ---
 
 ## 3. Compilation and installation
