@@ -92,10 +92,10 @@ bool looksLikeNumber(const std::string& s, double& v) {
 
 void usage() {
     std::cerr
-        << "Usage: myParaFunc -func \"COMMAND ...\" [-time VALUE|START:END] [-n N] [-timeSource auto|case|processor]\n"
+        << "Usage: foamParaFunc -func \"COMMAND ...\" [-time VALUE|START:END] [-n N] [-timeSource auto|case|processor]\n"
         << "Examples:\n"
-        << "  myParaFunc -func \"postProcess -func Q\" -time \"0.902:1.4\" -n 8\n"
-        << "  myParaFunc -func \"reconstructPar\" -timeSource processor -n 4\n";
+        << "  foamParaFunc -func \"postProcess -func Q\" -time \"0.902:1.4\" -n 8\n"
+        << "  foamParaFunc -func \"reconstructPar\" -timeSource processor -n 4\n";
 }
 
 TimeSourceMode parseTimeSource(const std::string& value) {
@@ -143,7 +143,7 @@ Config parseArgs(int argc, char* argv[]) {
 
     std::regex timeToken(R"((^|\s)-time(\s|$))");
     if (std::regex_search(cfg.funcCmd, timeToken)) {
-        throw std::runtime_error("Do not include -time inside -func; myParaFunc appends it automatically.");
+        throw std::runtime_error("Do not include -time inside -func; foamParaFunc appends it automatically.");
     }
     return cfg;
 }
@@ -439,7 +439,7 @@ std::string makeLogDir() {
     std::tm tm{};
     localtime_r(&t, &tm);
     std::ostringstream oss;
-    oss << "myParaFunc_logs_" << std::put_time(&tm, "%Y%m%d_%H%M%S");
+    oss << "foamParaFunc_logs_" << std::put_time(&tm, "%Y%m%d_%H%M%S");
     fs::create_directories(oss.str());
     return oss.str();
 }
